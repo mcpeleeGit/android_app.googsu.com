@@ -1,9 +1,12 @@
 package com.googsu.app
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.Menu
+import android.view.View
+import android.widget.ImageButton
 import android.widget.Toast
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
@@ -16,6 +19,11 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import com.googsu.app.ui.home.HomeFragment
+import com.kakao.sdk.auth.LoginClient
+import com.kakao.sdk.auth.model.OAuthToken
+import com.kakao.sdk.common.model.AuthErrorCause
+import com.kakao.sdk.user.UserApiClient
 
 class MainActivity : AppCompatActivity() {
     private var doubleBackToExitPressedOnce = false
@@ -35,12 +43,26 @@ class MainActivity : AppCompatActivity() {
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
         val navView: NavigationView = findViewById(R.id.nav_view)
         val navController = findNavController(R.id.nav_host_fragment)
+
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(setOf(
                 R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow), drawerLayout)
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+
+        UserApiClient.instance.accessTokenInfo { tokenInfo, error ->
+            if (error != null) {
+                Toast.makeText(this, "토큰 정보 보기 실패", Toast.LENGTH_SHORT).show()
+            }
+            else if (tokenInfo != null) {
+                Toast.makeText(this, "토큰 정보 보기 성공", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this, SecondActivity::class.java)
+                startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+            }
+        }
+
     }
 
     override fun onBackPressed() {
