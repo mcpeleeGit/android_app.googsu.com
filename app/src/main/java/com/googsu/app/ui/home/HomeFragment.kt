@@ -2,6 +2,7 @@ package com.googsu.app.ui.home
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +16,7 @@ import com.googsu.app.SecondActivity
 import com.kakao.sdk.auth.LoginClient
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.common.model.AuthErrorCause
+import com.kakao.sdk.common.util.Utility
 
 class HomeFragment : Fragment() {
 
@@ -40,18 +42,20 @@ class HomeFragment : Fragment() {
         val buttonkakaoLogin = root?.findViewById(R.id.kakao_login_button) as ImageButton
         val textHome = root?.findViewById(R.id.text_home) as TextView
 
+        var keyHash = Utility.getKeyHash(requireContext())
+
         val callback: (OAuthToken?, Throwable?) -> Unit = { token, error ->
             if (error != null) {
                 when {
-                    error.toString() == AuthErrorCause.AccessDenied.toString() -> { textHome.text = "접근이 거부 됨(동의 취소)" }
-                    error.toString() == AuthErrorCause.InvalidClient.toString() -> { textHome.text = "유효하지 않은 앱" }
-                    error.toString() == AuthErrorCause.InvalidGrant.toString() -> { textHome.text = "인증 수단이 유효하지 않아 인증할 수 없는 상태" }
-                    error.toString() == AuthErrorCause.InvalidRequest.toString() -> { textHome.text = "요청 파라미터 오류" }
-                    error.toString() == AuthErrorCause.InvalidScope.toString() -> { textHome.text = "유효하지 않은 scope ID" }
-                    error.toString() == AuthErrorCause.Misconfigured.toString() -> { textHome.text = "설정이 올바르지 않음(android key hash)" }
-                    error.toString() == AuthErrorCause.ServerError.toString() -> { textHome.text = "서버 내부 에러" }
-                    error.toString() == AuthErrorCause.Unauthorized.toString() -> { textHome.text = "앱이 요청 권한이 없음" }
-                    else -> { textHome.text = "기타 에러" }
+                    error.toString() == AuthErrorCause.AccessDenied.toString() -> { textHome.text = "AccessDenied :"+error.message }
+                    error.toString() == AuthErrorCause.InvalidClient.toString() -> { textHome.text = "InvalidClient :"+error.message }
+                    error.toString() == AuthErrorCause.InvalidGrant.toString() -> { textHome.text = "InvalidGrant :"+error.message }
+                    error.toString() == AuthErrorCause.InvalidRequest.toString() -> { textHome.text = "InvalidRequest :"+error.message }
+                    error.toString() == AuthErrorCause.InvalidScope.toString() -> { textHome.text = "InvalidScope :"+error.message }
+                    error.toString() == AuthErrorCause.Misconfigured.toString() -> { textHome.text = "Misconfigured :"+error.message }
+                    error.toString() == AuthErrorCause.ServerError.toString() -> { textHome.text = "ServerError :"+error.message }
+                    error.toString() == AuthErrorCause.Unauthorized.toString() -> { textHome.text = "Unauthorized :"+error.message  }
+                    else -> { textHome.text = keyHash+":"+error.message }
                 }
             }
             else if (token != null) {

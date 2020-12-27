@@ -11,7 +11,7 @@ class GlobalApplication : Application() {
 
         KakaoSdk.init(this, "c9b98a7bff62a096ba071901a19a2d86")
 
-        //var keyHash = Utility.getKeyHash(this)
-        //Log.d("keyHash",keyHash)
+        var keyHash = Utility.getKeyHash(this)
+        Log.d("keyHash",keyHash)
     }
 }
