@@ -6,6 +6,73 @@
     android:layout_height="match_parent"
     tools:context=".SecondActivity">
 
+
+    <Button
+        android:id="@+id/kakao_story_profile_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="카카오스토리 프로필 가져오기"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/kakao_msg_api_button"
+        />
+
+    <Button
+        android:id="@+id/kakao_msg_api_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="카카오톡 메세지 API 기본 메세지 보내기"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/kakao_link_msg_button"
+        />
+
+    <Button
+        android:id="@+id/kakao_link_msg_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="카카오 링크 기본 메세지 보내기"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/kakao_friends_list_button"
+        />
+
+    <Button
+        android:id="@+id/kakao_friends_list_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="카카오톡 친구 목록 조회"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/kakao_talk_profile_button"
+        />
+
+    <Button
+        android:id="@+id/kakao_talk_profile_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="카카오톡 프로필 조회"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/kakao_scope_button"
+        />
+
+    <Button
+        android:id="@+id/kakao_scope_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="추가항목 동의받기"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/kakao_logout_button"
+        />
+
     <Button
         android:id="@+id/kakao_logout_button"
         android:layout_width="match_parent"
