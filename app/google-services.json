@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "413557893799",
+    "project_id": "googsu-2f821",
+    "storage_bucket": "googsu-2f821.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:413557893799:android:c028ebcc71fbed75b44982",
+        "android_client_info": {
+          "package_name": "com.googsu.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "413557893799-b04kt922a7du1dqirlq5t2d7m53ussbc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA9v7RCJO4IlWi6nUspthVtgG-4ogJU2Ts"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "413557893799-b04kt922a7du1dqirlq5t2d7m53ussbc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

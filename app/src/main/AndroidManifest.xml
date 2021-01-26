@@ -51,6 +51,16 @@
                     android:scheme="kakaoc9b98a7bff62a096ba071901a19a2d86" />
             </intent-filter>
         </activity>
+        <service
+            android:name=".MyFirebaseMessagingService"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+
     </application>
 
 </manifest>

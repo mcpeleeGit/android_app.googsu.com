@@ -2,13 +2,12 @@ package com.googsu.app
 
 import android.content.Intent
 import android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.widget.Toolbar
+import androidx.appcompat.app.AppCompatActivity
 import com.kakao.sdk.auth.LoginClient
 import com.kakao.sdk.common.util.KakaoCustomTabsClient
 import com.kakao.sdk.link.LinkClient
@@ -20,6 +19,7 @@ import com.kakao.sdk.template.model.FeedTemplate
 import com.kakao.sdk.template.model.Link
 import com.kakao.sdk.template.model.Social
 import com.kakao.sdk.user.UserApiClient
+
 
 class SecondActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,12 +33,16 @@ class SecondActivity : AppCompatActivity() {
                 Toast.makeText(this, "토큰 정보 보기 실패 $error", Toast.LENGTH_SHORT).show()
             }
             else if (tokenInfo != null) {
-                Log.i("accessTokenInfo", "토큰 정보 보기 성공" +
-                        "\n회원번호: ${tokenInfo.id}" +
-                        "\n만료시간: ${tokenInfo.expiresIn} 초")
-                Toast.makeText(this, "토큰 정보 보기 성공\" +\n" +
-                        "회원번호: ${tokenInfo.id}\" +\n" +
-                        "만료시간: ${tokenInfo.expiresIn} 초", Toast.LENGTH_SHORT).show()
+                Log.i(
+                    "accessTokenInfo", "토큰 정보 보기 성공" +
+                            "\n회원번호: ${tokenInfo.id}" +
+                            "\n만료시간: ${tokenInfo.expiresIn} 초"
+                )
+                Toast.makeText(
+                    this, "토큰 정보 보기 성공\" +\n" +
+                            "회원번호: ${tokenInfo.id}\" +\n" +
+                            "만료시간: ${tokenInfo.expiresIn} 초", Toast.LENGTH_SHORT
+                ).show()
             }
         }
         // 카카오스토리 사용자 확인하기
@@ -65,36 +69,42 @@ class SecondActivity : AppCompatActivity() {
         val profileimage_url: TextView = findViewById(R.id.profileimage_url)
         val thumbnailimage_url: TextView = findViewById(R.id.thumbnailimage_url)
         val defaultFeed = FeedTemplate(
-                content = Content(
-                        title = "딸기 치즈 케익",
-                        description = "#케익 #딸기 #삼평동 #카페 #분위기 #소개팅",
-                        imageUrl = "http://mud-kage.kakao.co.kr/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png",
-                        link = Link(
-                                webUrl = "https://developers.kakao.com",
-                                mobileWebUrl = "https://developers.kakao.com"
-                        )
-                ),
-                social = Social(
-                        likeCount = 286,
-                        commentCount = 45,
-                        sharedCount = 845
-                ),
-                buttons = listOf(
-                        com.kakao.sdk.template.model.Button(
-                                "웹으로 보기",
-                                Link(
-                                        webUrl = "https://developers.kakao.com",
-                                        mobileWebUrl = "https://developers.kakao.com"
-                                )
-                        ),
-                        com.kakao.sdk.template.model.Button(
-                                "앱으로 보기",
-                                Link(
-                                        androidExecParams = mapOf("key1" to "value1", "key2" to "value2"),
-                                        iosExecParams = mapOf("key1" to "value1", "key2" to "value2")
-                                )
-                        )
+            content = Content(
+                title = "딸기 치즈 케익",
+                description = "#케익 #딸기 #삼평동 #카페 #분위기 #소개팅",
+                imageUrl = "http://mud-kage.kakao.co.kr/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png",
+                link = Link(
+                    webUrl = "https://developers.kakao.com",
+                    mobileWebUrl = "https://developers.kakao.com"
                 )
+            ),
+            social = Social(
+                likeCount = 286,
+                commentCount = 45,
+                sharedCount = 845
+            ),
+            buttons = listOf(
+                com.kakao.sdk.template.model.Button(
+                    "웹으로 보기",
+                    Link(
+                        webUrl = "https://developers.kakao.com",
+                        mobileWebUrl = "https://developers.kakao.com"
+                    )
+                ),
+                com.kakao.sdk.template.model.Button(
+                    "앱으로 보기",
+                    Link(
+                        androidExecParams = mapOf(
+                            "key1" to "value1",
+                            "key2" to "value2"
+                        ),
+                        iosExecParams = mapOf(
+                            "key1" to "value1",
+                            "key2" to "value2"
+                        )
+                    )
+                )
+            )
         )
 
         kakao_story_profile_button.setOnClickListener {
@@ -104,10 +114,12 @@ class SecondActivity : AppCompatActivity() {
                     Toast.makeText(this, "카카오스토리 프로필 가져오기 실패 $error", Toast.LENGTH_SHORT).show()
                 }
                 else if (profile != null) {
-                    Toast.makeText(this, "카카오스토리 프로필 가져오기 성공\" +\n" +
-                            "닉네임: ${profile.nickname}\" +\n" +
-                            "프로필사진: ${profile.thumbnailUrl}\" +\n" +
-                            "생일: ${profile.birthday}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        this, "카카오스토리 프로필 가져오기 성공\" +\n" +
+                                "닉네임: ${profile.nickname}\" +\n" +
+                                "프로필사진: ${profile.thumbnailUrl}\" +\n" +
+                                "생일: ${profile.birthday}", Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
         }
@@ -130,12 +142,24 @@ class SecondActivity : AppCompatActivity() {
                         Toast.makeText(this, "카카오링크 보내기 실패 $error", Toast.LENGTH_SHORT).show()
                     }
                     else if (linkResult != null) {
-                        Toast.makeText(this, "카카오링크 보내기 성공 ${linkResult.intent}", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            this,
+                            "카카오링크 보내기 성공 ${linkResult.intent}",
+                            Toast.LENGTH_SHORT
+                        ).show()
                         startActivity(linkResult.intent)
 
                         // 카카오링크 보내기에 성공했지만 아래 경고 메시지가 존재할 경우 일부 컨텐츠가 정상 동작하지 않을 수 있습니다.
-                        Toast.makeText(this, "Warning Msg: ${linkResult.warningMsg}", Toast.LENGTH_SHORT).show()
-                        Toast.makeText(this, "Argument Msg: ${linkResult.argumentMsg}", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            this,
+                            "Warning Msg: ${linkResult.warningMsg}",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        Toast.makeText(
+                            this,
+                            "Argument Msg: ${linkResult.argumentMsg}",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                 }
             } else {
@@ -156,8 +180,10 @@ class SecondActivity : AppCompatActivity() {
                     Toast.makeText(this, "카카오톡 친구 목록 가져오기 실패 $error", Toast.LENGTH_SHORT).show()
                 }
                 else if (friends != null) {
-                    Toast.makeText(this, "카카오톡 친구 목록 가져오기 성공 \n" +
-                            "${friends.elements.joinToString("\n")}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        this, "카카오톡 친구 목록 가져오기 성공 \n" +
+                                "${friends.elements.joinToString("\n")}", Toast.LENGTH_SHORT
+                    ).show()
                     // 친구의 UUID 로 메시지 보내기 가능
                 }
             }
@@ -170,10 +196,12 @@ class SecondActivity : AppCompatActivity() {
                     Toast.makeText(this, "카카오톡 프로필 가져오기 실패 $error", Toast.LENGTH_SHORT).show()
                 }
                 else if (profile != null) {
-                    Toast.makeText(this, "카카오톡 프로필 가져오기 성공\" +\n" +
-                            "닉네임: ${profile.nickname}\" +\n" +
-                            "프로필사진: ${profile.thumbnailUrl}\" +\n" +
-                            "국가코드: ${profile.countryISO}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        this, "카카오톡 프로필 가져오기 성공\" +\n" +
+                                "닉네임: ${profile.nickname}\" +\n" +
+                                "프로필사진: ${profile.thumbnailUrl}\" +\n" +
+                                "국가코드: ${profile.countryISO}", Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
         }
@@ -188,7 +216,11 @@ class SecondActivity : AppCompatActivity() {
                         Toast.makeText(this, "이메일: ${user.kakaoAccount?.email}", Toast.LENGTH_SHORT).show()
                     }
                     else if (user.kakaoAccount?.emailNeedsAgreement == false) {
-                        Toast.makeText(this, "사용자 계정에 이메일 없음. 꼭 필요하다면 동의항목 설정에서 수집 기능을 활성화 해보세요.", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            this,
+                            "사용자 계정에 이메일 없음. 꼭 필요하다면 동의항목 설정에서 수집 기능을 활성화 해보세요.",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                     else if (user.kakaoAccount?.emailNeedsAgreement == true) {
                         Toast.makeText(this, "사용자에게 이메일 제공 동의를 받아야 합니다.", Toast.LENGTH_SHORT).show()
@@ -198,15 +230,27 @@ class SecondActivity : AppCompatActivity() {
                             if (error != null) {
                                 Toast.makeText(this, "이메일 제공 동의 실패 $error", Toast.LENGTH_SHORT).show()
                             } else {
-                                Toast.makeText(this, "allowed scopes: ${token!!.scopes}", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(
+                                    this,
+                                    "allowed scopes: ${token!!.scopes}",
+                                    Toast.LENGTH_SHORT
+                                ).show()
 
                                 // 사용자 정보 재요청
                                 UserApiClient.instance.me { user, error ->
                                     if (error != null) {
-                                        Toast.makeText(this, "사용자 정보 요청 실패 $error", Toast.LENGTH_SHORT).show()
+                                        Toast.makeText(
+                                            this,
+                                            "사용자 정보 요청 실패 $error",
+                                            Toast.LENGTH_SHORT
+                                        ).show()
                                     }
                                     else if (user != null) {
-                                        Toast.makeText(this, "이메일: ${user.kakaoAccount?.email}", Toast.LENGTH_SHORT).show()
+                                        Toast.makeText(
+                                            this,
+                                            "이메일: ${user.kakaoAccount?.email}",
+                                            Toast.LENGTH_SHORT
+                                        ).show()
                                     }
                                 }
                             }
