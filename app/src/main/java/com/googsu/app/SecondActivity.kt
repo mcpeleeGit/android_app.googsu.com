@@ -9,6 +9,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.kakao.sdk.auth.LoginClient
+import com.kakao.sdk.auth.TokenManagerProvider
 import com.kakao.sdk.common.util.KakaoCustomTabsClient
 import com.kakao.sdk.link.LinkClient
 import com.kakao.sdk.link.WebSharerClient
@@ -35,6 +36,7 @@ class SecondActivity : AppCompatActivity() {
             else if (tokenInfo != null) {
                 Log.i(
                     "accessTokenInfo", "토큰 정보 보기 성공" +
+                            "\ntoString: ${tokenInfo.toString()}" +
                             "\n회원번호: ${tokenInfo.id}" +
                             "\n만료시간: ${tokenInfo.expiresIn} 초"
                 )

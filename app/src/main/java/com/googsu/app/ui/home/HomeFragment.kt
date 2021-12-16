@@ -1,5 +1,7 @@
 package com.googsu.app.ui.home
 
+import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -17,6 +19,13 @@ import com.kakao.sdk.auth.LoginClient
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.common.model.AuthErrorCause
 import com.kakao.sdk.common.util.Utility
+import android.widget.Toast
+import com.nhn.android.naverlogin.OAuthLogin
+import com.nhn.android.naverlogin.OAuthLogin.mOAuthLoginHandler
+
+import com.nhn.android.naverlogin.OAuthLoginHandler
+import kotlinx.android.synthetic.main.fragment_home.*
+
 
 class HomeFragment : Fragment() {
 
@@ -34,9 +43,11 @@ class HomeFragment : Fragment() {
         homeViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
-        kakaoLogin(root);
+        kakaoLogin(root)
+
         return root
     }
+
 
     private fun kakaoLogin(root: View?) {
         val buttonkakaoLogin = root?.findViewById(R.id.kakao_login_button) as ImageButton
@@ -73,4 +84,6 @@ class HomeFragment : Fragment() {
             }
         }
     }
+
+
 }
